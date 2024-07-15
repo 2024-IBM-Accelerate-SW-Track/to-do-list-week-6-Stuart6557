@@ -3,24 +3,44 @@ import { Button, TextField } from "@mui/material";
 import Axios from "axios";
 
 class SearchTodo extends Component {
-  
   state = {
     tmpdata: [],
   };
 
   handleChange = (e) => {
     this.setState({
-      content: e.target.value,
-      date: Date().toLocaleString('en-US'),
+    content: e.target.value,
+    date: Date().toLocaleString('en-US'),
     });
   };
-  
 
   handleSubmit = (e) => {
     //Begin Here
-
+    e.preventDefault();
+    // HTTP Client to send a GET request
+    Axios({
+      method: "GET",
+      url: "http://localhost:8080/get/searchitem",
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      params: {
+        taskname: this.state.content
+      }
+    })
+    .then((res) => {
+      this.setState({
+        tmpdata: JSON.stringify(res.data),
+      });
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      this.setState({
+        tmpdata: "Network Error: " + err.message,
+      });
+    });
   };
-  
+
   render() {
     return (
       <div>
