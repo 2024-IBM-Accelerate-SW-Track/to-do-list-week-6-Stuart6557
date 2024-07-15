@@ -13,6 +13,7 @@ class AddTodo extends Component {
       duedate: null
     };
   }
+
   // The handleChange function updates the react state with the new input value provided from the user and the current date/time.
   // "event" is the defined action a user takes. In this case, the event is triggered when the user types something
   // into the text field.
@@ -32,6 +33,7 @@ class AddTodo extends Component {
       duedate: date
     });
   };
+
   // The handleSubmit function collects the forms input and puts it into the react state.
   // event.preventDefault() is called to prevents default event behavior like refreshing the browser.
   // this.props.addTodo(this.state) passes the current state (or user input and current date/time) into the addTodo function defined
@@ -47,6 +49,7 @@ class AddTodo extends Component {
       });
     }
   };
+  
   render() {
     return (
       // 1. When rendering a component, you can render as many elements as you like as long as it is wrapped inside
